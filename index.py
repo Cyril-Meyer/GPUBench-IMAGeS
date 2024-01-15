@@ -3,7 +3,8 @@ import bench
 
 tensorflow = np.array([
     ('TF2-MLP', bench.Tf2Mlp),
-    ('TF2-CNN-ResNet50', bench.Tf2CnnResnet50)
+    ('TF2-CNN-ResNet50', bench.Tf2CnnResnet50),
+    ('TF2-CNN-ResNet101', bench.Tf2CnnResnet101)
 ])
 
 '''

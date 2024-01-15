@@ -107,3 +107,30 @@ class Tf2CnnResnet50(Tf2Cifar100):
                                  verbose=0)
 
         return np.mean(time_callback.times[1:])
+
+
+class Tf2CnnResnet101(Tf2Cifar100):
+    vram = 4.0
+    id = 'TF2-CNN-ResNet101'
+
+    def __init__(self):
+        super().__init__()
+
+        self.model = tensorflow.keras.applications.resnet.ResNet101(
+                     include_top=True,
+                     weights=None,
+                     input_shape=(32, 32, 3),
+                     classes=100)
+        self.model.compile(optimizer='adam',
+                           loss=tensorflow.keras.losses.SparseCategoricalCrossentropy())
+
+    def mark(self) -> float:
+        time_callback = tfutils.TimeHistory()
+        history = self.model.fit(self.x_train, self.y_train,
+                                 epochs=11,
+                                 batch_size=32,
+                                 steps_per_epoch=128,
+                                 callbacks=[time_callback],
+                                 verbose=1)
+
+        return np.mean(time_callback.times[1:])
