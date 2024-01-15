@@ -31,6 +31,9 @@ if args.tensorflow:
 if args.pytorch:
     raise NotImplementedError
 
+if args.id is None:
+    args.id = []
+
 for id in args.id:
     if id not in index.benchmarks.keys():
         print(f'ERROR: wrong benchmark id : {id}')
