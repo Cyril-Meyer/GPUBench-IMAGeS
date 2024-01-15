@@ -1,8 +1,7 @@
 import argparse
-import index
-
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'  # avoid tensorflow information messages
+
+import index
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--vram', type=float, default=None,
@@ -13,7 +12,11 @@ parser.add_argument('--pytorch', action='store_true',
                     help='run all PyTorch flagged benchmarks')
 parser.add_argument('--id', nargs='*', type=str,
                     help='run all specified benchmarks')
+parser.add_argument('--tf-min-log-lvl', type=int, default=3,
+                    help='run all specified benchmarks')
 args = parser.parse_args()
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = str(args.tf_min_log_lvl)  # avoid tensorflow information messages
 
 print('GPUBench-IMAGeS')
 
