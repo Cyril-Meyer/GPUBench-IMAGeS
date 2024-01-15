@@ -131,6 +131,6 @@ class Tf2CnnResnet101(Tf2Cifar100):
                                  batch_size=32,
                                  steps_per_epoch=128,
                                  callbacks=[time_callback],
-                                 verbose=1)
+                                 verbose=0)
 
         return np.mean(time_callback.times[1:])
