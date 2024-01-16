@@ -9,6 +9,7 @@ usage: run.py [-h] [--vram VRAM] [--tensorflow] [--pytorch]
 optional arguments:
   --vram VRAM           only run benchmarks with vram usage less or equal to
                         this value
+  --stress              run TensorFlow stress test
   --tensorflow          run all TensorFlow flagged benchmarks
   --pytorch             run all PyTorch flagged benchmarks
   --id [ID [ID ...]]    run all specified benchmarks
@@ -31,13 +32,17 @@ Lower score are better.
   * GPU RTX 4090
   * CPU W-2255
 
-
 | Benchmark         | 2080 TI | 4090 α  | 4090 β  | 4090 γ  | W-2135  | W-2255  |
 |-------------------|--------:|--------:|--------:|--------:|--------:|--------:|
 | TF2-MLP           |     1.2 |     1.0 |     0.8 |     1.1 |    23.6 |    28.4 |
 | TF2-CNN-ResNet50  |     5.2 |     4.8 |     2.5 |     5.3 |   111.2 |    16.7 |
 | TF2-CNN-ResNet101 |     8.8 |     7.4 |     4.3 |     9.0 |   123.5 |    28.8 |
 
+# Stress test
+Stress test a.k.a GPGPU as winter heating are infinite test that allow you to
+test the stability of your setup.
+
+* run TensorFlow stress test `python run.py --stress`
 
 # Tips and tricks
 To check that your GPU is correctly installed, you can run the benchmark without

@@ -134,3 +134,36 @@ class Tf2CnnResnet101(Tf2Cifar100):
                                  verbose=0)
 
         return np.mean(time_callback.times[1:])
+
+
+class Tf2StressMlp(Tf2Mnist):
+    vram = 11.0
+    id = 'TF2-STRESS-MLP'
+
+    def __init__(self):
+        super().__init__()
+        self.model = tensorflow.keras.models.Sequential([
+            tensorflow.keras.layers.InputLayer(input_shape=(28, 28, 1)),
+            tensorflow.keras.layers.UpSampling2D(size=(10, 10)),
+            tensorflow.keras.layers.Flatten(),
+            tensorflow.keras.layers.Dense(4096, activation='relu'),
+            tensorflow.keras.layers.Dense(16384, activation='relu'),
+            tensorflow.keras.layers.Dense(16384, activation='relu'),
+            tensorflow.keras.layers.Dense(10)
+        ])
+        self.Wsave = self.model.get_weights()
+
+        self.model.compile(optimizer='adam',
+                           loss=tensorflow.keras.losses.SparseCategoricalCrossentropy(from_logits=True))
+
+    def mark(self) -> float:
+        self.model.set_weights(self.Wsave)
+
+        time_callback = tfutils.TimeHistory()
+        history = self.model.fit(self.x_train, self.y_train,
+                                 epochs=60,
+                                 batch_size=64,
+                                 callbacks=[time_callback],
+                                 verbose=0)
+
+        return np.mean(time_callback.times)

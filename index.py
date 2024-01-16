@@ -19,3 +19,5 @@ misc = np.array([
 
 tensorflow = dict(tensorflow)
 benchmarks = tensorflow
+
+stress = bench.Tf2StressMlp
