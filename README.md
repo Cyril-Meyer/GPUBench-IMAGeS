@@ -19,8 +19,9 @@ optional arguments:
 
 ### Examples
 * run TensorFlow benchmarks `python run.py --tensorflow`
+* run TensorFlow stress test `python run.py --stress`
 
-# Reference values
+# Benchmarks reference values
 Values represent mean duration per epoch of the test.
 Lower score are better.
 
@@ -41,8 +42,16 @@ Lower score are better.
 # Stress test
 Stress test a.k.a GPGPU as winter heating are infinite test that allow you to
 test the stability of your setup.
+Values must be stable over time.
 
-* run TensorFlow stress test `python run.py --stress`
+Reference values are as following:
+
+| Stress test       | Time (s) |
+|-------------------|---------:|
+| 4096 TI           |       39 |
+| 2080 TI           |       67 |
+| W-2135            |     1442 |
+| W-2255            |     2725 |
 
 # Tips and tricks
 To check that your GPU is correctly installed, you can run the benchmark without
