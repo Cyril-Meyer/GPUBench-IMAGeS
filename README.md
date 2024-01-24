@@ -48,8 +48,8 @@ Reference values are as following:
 
 | Stress test       | Time (s) |
 |-------------------|---------:|
-| 4096 TI           |       39 |
-| 2080 TI           |       67 |
+| RTX 4090          |       39 |
+| RTX 2080 TI       |       67 |
 | W-2135            |     1442 |
 | W-2255            |     2725 |
 
